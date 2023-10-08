@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pl.edu.agh.iisg.to.ActiveRecordTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-10-08T20:55:09" hostname="Julias-MacBook-Air.local" time="0.053">
+  <properties/>
+  <testcase name="gradeStudentTest()" classname="pl.edu.agh.iisg.to.ActiveRecordTest" time="0.053"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Oct 08, 2023 10:55:09 PM pl.edu.agh.iisg.to.connection.ConnectionProvider init
+INFO: Loading driver
+Oct 08, 2023 10:55:09 PM pl.edu.agh.iisg.to.connection.ConnectionProvider init
+INFO: Connection created
+Oct 08, 2023 10:55:09 PM pl.edu.agh.iisg.to.connection.ConnectionProvider close
+INFO: Closing connection
+Oct 08, 2023 10:55:09 PM pl.edu.agh.iisg.to.connection.ConnectionProvider init
+INFO: Loading driver
+Oct 08, 2023 10:55:09 PM pl.edu.agh.iisg.to.connection.ConnectionProvider init
+INFO: Connection created
+Oct 08, 2023 10:55:09 PM pl.edu.agh.iisg.to.executor.QueryExecutor <clinit>
+INFO: Creating table Student
+Oct 08, 2023 10:55:09 PM pl.edu.agh.iisg.to.executor.QueryExecutor <clinit>
+INFO: Creating table Course
+Oct 08, 2023 10:55:09 PM pl.edu.agh.iisg.to.executor.QueryExecutor <clinit>
+INFO: Creating table Student_Course
+Oct 08, 2023 10:55:09 PM pl.edu.agh.iisg.to.executor.QueryExecutor <clinit>
+INFO: Creating table Grade
+Oct 08, 2023 10:55:09 PM pl.edu.agh.iisg.to.executor.QueryExecutor read
+INFO: Query: SELECT * FROM student WHERE id = (?) executed.
+Oct 08, 2023 10:55:09 PM pl.edu.agh.iisg.to.executor.QueryExecutor read
+INFO: Query: SELECT * FROM course WHERE id = ? executed.
+Oct 08, 2023 10:55:09 PM pl.edu.agh.iisg.to.connection.ConnectionProvider close
+INFO: Closing connection
+]]></system-err>
+</testsuite>
