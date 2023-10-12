@@ -7,7 +7,11 @@ import pl.edu.agh.iisg.to.model.Student;
 public class GradeDao extends GenericDao<Grade> {
 
     public boolean gradeStudent(final Student student, final Course course, final float grade) {
-        //TODO implement
+        Grade grade2 = new Grade(student, course, grade);
+        student.gradeSet().add(grade2);
+        course.gradeSet().add(grade2);
+        save(grade2);
+
         return true;
     }
 
