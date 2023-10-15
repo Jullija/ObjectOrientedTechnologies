@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pl.edu.agh.school.SchoolModuleTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-10-15T09:28:58" hostname="Julias-MacBook-Air.local" time="0.186">
+  <properties/>
+  <testcase name="loggerSingletonTest()" classname="pl.edu.agh.school.SchoolModuleTest" time="0.186"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
