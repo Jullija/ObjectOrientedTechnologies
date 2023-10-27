@@ -1,18 +1,22 @@
 package pl.edu.agh.logger;
 
-import javax.inject.Singleton;
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 @Singleton
 public class Logger {
     protected static Logger logger;
 
     protected DateFormat dateFormat;
 
-    protected Set<IMessageSerializer> registeredSerializers;
+	@Inject
+	protected Set<IMessageSerializer> registeredSerializers;
 
     public Logger() {
         init();

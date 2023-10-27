@@ -6,29 +6,29 @@ import java.util.List;
 import com.google.inject.Inject;
 import pl.edu.agh.logger.Logger;
 import pl.edu.agh.school.persistence.IPersistenceManager;
-import pl.edu.agh.school.persistence.SerializablePersistenceManager;
 
 public class SchoolDAO {
 
-    public static final Logger log = Logger.getInstance();
+    @Inject
+    private Logger log;
 
     private final List<Teacher> teachers;
 
     private final List<SchoolClass> classes;
 
-    private final IPersistenceManager manager;
+    private final IPersistenceManager persistenceManager;
 
     @Inject
-    public SchoolDAO(IPersistenceManager manager) {
-        this.manager = manager;
-        teachers = manager.loadTeachers();
-        classes = manager.loadClasses();
+    public SchoolDAO(IPersistenceManager persistenceManager) {
+        this.persistenceManager = persistenceManager;
+        teachers = this.persistenceManager.loadTeachers();
+        classes = this.persistenceManager.loadClasses();
     }
 
     public void addTeacher(Teacher teacher) {
         if (!teachers.contains(teacher)) {
             teachers.add(teacher);
-            manager.saveTeachers(teachers);
+            persistenceManager.saveTeachers(teachers);
             log.log("Added " + teacher.toString());
         }
     }
@@ -36,7 +36,7 @@ public class SchoolDAO {
     public void addClass(SchoolClass newClass) {
         if (!classes.contains(newClass)) {
             classes.add(newClass);
-            manager.saveClasses(classes);
+            persistenceManager.saveClasses(classes);
             log.log("Added " + newClass.toString());
         }
     }

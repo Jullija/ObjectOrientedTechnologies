@@ -1,18 +1,14 @@
 package pl.edu.agh.school;
 
-import com.google.inject.Inject;
-
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.google.inject.Inject;
+
 public class School {
 
-    private SchoolDAO schoolDAO;
-
     @Inject
-    public School(SchoolDAO schoolDAO) {
-        this.schoolDAO = schoolDAO;
-    }
+    private SchoolDAO schoolDAO;
 
     public void addTeacher(Teacher teacher) {
         schoolDAO.addTeacher(teacher);
@@ -47,7 +43,7 @@ public class School {
     }
 
     public void addClass(SchoolClass newClass) {
-       schoolDAO.addClass(newClass);
+        schoolDAO.addClass(newClass);
     }
 
     public Collection<SchoolClass> findClass(String name, String profile) {
