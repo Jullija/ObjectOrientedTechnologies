@@ -4,7 +4,7 @@ import javafx.application.Application;
 
 public class Main {
 
-    public static final String SCRAPER_API_KEY = "***778dfc2956b8cf3a2023235531245500 ***";
+    public static final String SCRAPER_API_KEY = "*** Enter your https://www.scraperapi.com API key HERE ***";
 
 
     public static void main(String[] args) {

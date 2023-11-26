@@ -1,11 +1,10 @@
 package controller;
 
 
-import io.reactivex.rxjava3.core.Scheduler;
+import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -18,13 +17,17 @@ import util.PhotoDownloader;
 public class GalleryController {
 
     @FXML
-    private TextField searchTextField;
-    @FXML
-    private ListView<Photo> imagesListView;
-    @FXML
     private TextField imageNameField;
+
     @FXML
     private ImageView imageView;
+
+    @FXML
+    private ListView<Photo> imagesListView;
+
+    @FXML
+    private TextField searchTextField;
+
     private Gallery galleryModel;
 
     @FXML
@@ -44,35 +47,35 @@ public class GalleryController {
                 }
             }
         });
-
-
         imagesListView.getSelectionModel().selectedItemProperty()
-                .addListener((observable, oldValue, newValue) ->{
-                    if (newValue != null){
-                        imageView.imageProperty().bind(newValue.photoDataProperty());
-                        imageNameField.textProperty().bind(newValue.nameProperty());
+                .addListener((observable, oldValue, newValue) -> {
+                    if (oldValue != null) {
+                        imageNameField.textProperty().unbindBidirectional(oldValue.nameProperty());
                     }
-                        }
-                        );
-
+                    bindSelectedPhoto(oldValue, newValue);
+                });
     }
 
     public void setModel(Gallery gallery) {
         this.galleryModel = gallery;
-        bindSelectedPhoto(gallery.getPhotos().get(0));
         imagesListView.setItems(gallery.getPhotos());
-    }
-
-    private void bindSelectedPhoto(Photo selectedPhoto) {
-        imageNameField.textProperty().bind(selectedPhoto.nameProperty()); //za każdym razem jak się zmieni selected_photo to zmieniamy
         imagesListView.getSelectionModel().select(0);
     }
 
+    private void bindSelectedPhoto(Photo oldSelectedPhoto, Photo newSelectedPhoto) {
+        if (newSelectedPhoto != null) {
+            imageNameField.textProperty().bindBidirectional(newSelectedPhoto.nameProperty());
+            imageView.imageProperty().bind(newSelectedPhoto.photoDataProperty());
+        } else {
+            imageNameField.textProperty().unbindBidirectional(oldSelectedPhoto.nameProperty());
+            imageView.imageProperty().unbind();
+        }
+    }
 
-    public void searchButtonClicked(ActionEvent event) {
-        PhotoDownloader photoDownloader = new PhotoDownloader();
+    public void searchButtonClicked(ActionEvent actionEvent) {
+        var photoDownloader = new PhotoDownloader();
         galleryModel.clear();
-        photoDownloader.searchForPhotos(searchTextField.getText())
+        Disposable subscribe = photoDownloader.searchForPhotos(searchTextField.getText())
                 .subscribeOn(Schedulers.io())
                 .observeOn(JavaFxScheduler.platform())
                 .subscribe(photo -> galleryModel.addPhoto(photo));

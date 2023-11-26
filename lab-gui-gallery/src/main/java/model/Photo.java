@@ -25,7 +25,7 @@ public class Photo {
         return name.get();
     }
 
-    public StringProperty nameProperty(){
+    public StringProperty nameProperty() {
         return name;
     }
 
